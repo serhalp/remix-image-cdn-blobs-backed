@@ -7,35 +7,28 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+const getImageUrl = (filename: string): string => {
+  const funcPath = `/image?filename=${encodeURIComponent(filename)}`;
+  return `/.netlify/images/?url=${encodeURIComponent(
+    funcPath
+  )}&fit=cover&w=400`;
+};
+
 export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+      <div>
+        An image:
+        <img
+          src={getImageUrl("old-man-yells-forever.gif")}
+          alt="An old man yelling forever"
+        />
+      </div>
+      <div>
+        An image with a deeply nested path:
+        <img src={getImageUrl("animals/camel.jpg")} alt="A camel" />
+      </div>
     </div>
   );
 }
